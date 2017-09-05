@@ -50,10 +50,13 @@ def evaluar(arbol):
         return evaluar(arbol.izq) * evaluar(arbol.der)
     return int(arbol.valor)
     
-expresion = input("Ingrese una expresión en POSFIJA: ").split(" ")
+if __name__ == "__main__":
 
-pila = Pila()
-
-convertir(expresion, pila)
-
-print (evaluar(pila.desapilar()))
+    variables = {}
+    variable = ""
+    n = "s"
+    pila = Pila()
+    while (n == "s"):    
+        expresion = input("Ingrese una expresión en POSFIJA: ").split(" ")
+        convertir(expresion, pila)
+        n = input("Desea ingresar otras espresion? s/n ")
