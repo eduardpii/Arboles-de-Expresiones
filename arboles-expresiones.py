@@ -26,7 +26,14 @@ def convertir(lista, pila):
         if lista[0] in "+-*/":#evalua los operadores
             nodo_der = pila.desapilar()#Desapila debido a la posfija
             nodo_izq = pila.desapilar()#Desapila debido a la posfija
-            pila.apilar(Nodo(lista[0],nodo_izq,nodo_der))#apila los nodos
+            pila.apilar(Nodo(lista[0],nodo_izq,nodo_der))#apila arbol
+        elif lista[0] in variables:
+            valor = variables[lista[0]]
+            pila.apilar(Nodo(valor[0]))
+        elif lista[0] in "=":
+            variable = pila.desapilar().valor
+            variables[variable] = [evaluar(pila.desapilar())]
+            print (variable+"="+str(variables[variable][0]))
         else:
             pila.apilar(Nodo(lista[0]))#apila nodos
         return convertir(lista[1:],pila)#recursividad
